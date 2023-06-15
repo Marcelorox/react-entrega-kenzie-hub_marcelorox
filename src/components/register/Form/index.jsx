@@ -41,7 +41,7 @@ export const schema = z
 
     contact: z.string().nonempty("precisamos de informacao de contato"),
 
-    module: z.string().nonempty(),
+    module: z.string().nonempty("selecione um modulo"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas precisam corresponderem",
