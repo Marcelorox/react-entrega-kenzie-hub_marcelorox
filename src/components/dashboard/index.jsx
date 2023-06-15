@@ -9,7 +9,6 @@ export function Dashboard() {
   if(!storedData){
     null
   }else{
-    
     const navigateTo = useNavigate();
   
     console.log(user)

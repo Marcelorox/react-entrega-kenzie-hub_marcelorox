@@ -132,4 +132,7 @@ export const FormRegisterCss = styled.div`
     background: var(--color-primary);
     transition: 1s;
   }
+  .password{
+    display: flex;
+  }
 `;

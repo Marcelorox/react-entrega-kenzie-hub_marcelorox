@@ -46,4 +46,7 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+html{
+	font-family: 'Inter', sans-serif;
+}
 `

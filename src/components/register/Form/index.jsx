@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { FormRegisterCss } from "./styles";
 import { api } from "../../../api";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { InputFieldRegister } from "../Input";
 import { SelectFieldRegister } from "../Select";
 
@@ -49,6 +49,8 @@ export const schema = z
   });
 
 export function RegisterForm() {
+  const navigateTo = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -68,6 +70,7 @@ export function RegisterForm() {
         course_module: formData.module,
       });
       toast.success("Registrado com sucesso");
+      navigateTo('/')
     } catch (error) {
       toast.error("Ops! algo deu errado");
     }

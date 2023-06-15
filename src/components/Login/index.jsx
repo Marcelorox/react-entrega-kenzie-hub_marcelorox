@@ -7,6 +7,7 @@ import { api } from "../../api";
 import { toast } from "react-toastify";
 import { LoginCss } from "./loginPage.js";
 import { Link, useNavigate } from "react-router-dom";
+import { AiFillEye } from 'react-icons/ai';
 
 const schema = z.object({
   email: z.string().email('email invalido').nonempty(),
@@ -58,7 +59,7 @@ export function Login() {
               register={register}
               errors={errors}
             />
-
+            
             <InputFieldLogin
               label="Senha"
               type="password"
