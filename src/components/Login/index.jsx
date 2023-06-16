@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -7,7 +7,6 @@ import { api } from "../../api";
 import { toast } from "react-toastify";
 import { LoginCss } from "./loginPage.js";
 import { Link, useNavigate } from "react-router-dom";
-import { AiFillEye } from 'react-icons/ai';
 
 const schema = z.object({
   email: z.string().email('email invalido').nonempty(),
@@ -27,7 +26,6 @@ export function Login() {
   });
 
   const onSubmit = async (formData) => {
-    console.log(formData)
     try {
       const { data } = await api.post("/sessions", {
         email: formData.email,
@@ -42,8 +40,6 @@ export function Login() {
         toast.error("Ops! algo deu errado");
     }
   };
-
-
   return (
     <LoginCss>
       <img className="logo" src="/Logo.svg" alt="" />

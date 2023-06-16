@@ -4,15 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 export function Dashboard() {
   const storedData = localStorage.getItem('apiResponse');
-  const {user, token} = JSON.parse(storedData);
-
+  const navigateTo = useNavigate();
   if(!storedData){
-    null
+    
   }else{
-    const navigateTo = useNavigate();
-  
-    console.log(user)
-  
+    const {user, token} = JSON.parse(storedData);
     function clearStored(){
       localStorage.clear()
       toast.success('deslogado com sucesso!')
@@ -44,11 +40,11 @@ export function Dashboard() {
                 <p>Que pena! Estamos em desenvolvimento :(</p>
                 <span>Nossa aplicação está em desenvolvimento, em breve teremos novidades</span>
               </div>
-          </main>
-  
+          </main>      
         </DashboardPage>
   
       </>
     );
   }
-}
+  }
+    
