@@ -33,7 +33,7 @@ export const InputLoginCss = styled.div`
     color: var(--grey-0);
   }
   .message{
-    color: var(--grey-0);
+    color:red;
     margin-top: 1rem;
   }
 `;

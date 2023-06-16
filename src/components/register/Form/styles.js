@@ -4,7 +4,7 @@ export const FormRegisterCss = styled.div`
   background-color: var(--grey-4);
 
   .message{
-    color: var(--grey-0);
+    color: red;
     margin-top: 0.2rem;
     font-size: 10px;
     outline: none;
