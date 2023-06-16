@@ -10,7 +10,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 const schema = z.object({
   email: z.string().email('email invalido').nonempty(),
-  password: z.string().min(8,'senha invalida').nonempty(),
+  password: z.string().min(8,'senha invalida').nonempty()
+  .regex(/(?=.*?[A-Z])/, "É necessário ao menos uma letra maiúscula")
+  .regex(/(?=.*?[a-z])/, "É necessário ao menos uma letra minúscula")
+  .regex(/(?=.*?[0-9])/, "É necessário pelo menos um número")
+  .regex(/(?=.*[)!}{,.^?~=+\-_\/*\-+.\|])/,"É necessário pelo menos um caracter especial"),
 });
 
 export function Login() {
