@@ -1,14 +1,19 @@
 import { toast } from "react-toastify";
 import { DashboardPage } from "./style";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export function Dashboard() {
+
   const storedData = localStorage.getItem('apiResponse');
   const navigateTo = useNavigate();
+
   if(!storedData){
     
   }else{
-    const {user, token} = JSON.parse(storedData);
+    const [info, setInfo] = useState([])
+    const user = JSON.parse(storedData);
+    setInfo(user)
     function clearStored(){
       localStorage.clear()
       toast.success('deslogado com sucesso!')
@@ -29,8 +34,8 @@ export function Dashboard() {
   
           <header>
             <div className="container__header">
-            <h2>{user.name}</h2>
-            <span>{user.course_module}</span>
+            <h2>{info.name}</h2>
+            <span>{info.course_module}</span>
             </div>
           </header>
   
