@@ -7,10 +7,11 @@ export function Dashboard() {
   const storedData = localStorage.getItem("apiResponse");
   const navigateTo = useNavigate();
   const [info, setInfo] = useState([]);
+  console.log(info)
 
   useEffect(() => {
     const user = JSON.parse(storedData);
-    setInfo(user);
+    setInfo(user.user);
   }, []);
 
   function clearStored() {
