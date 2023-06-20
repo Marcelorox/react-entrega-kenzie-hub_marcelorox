@@ -9,7 +9,8 @@ export function Dashboard() {
   const navigateTo = useNavigate();
 
   if(!storedData){
-    
+    navigateTo('/login')
+    return null;
   }else{
     const [info, setInfo] = useState([])
     const user = JSON.parse(storedData);
