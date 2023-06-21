@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FormRegisterCss } from "./styles";
-import { api } from "../../../api";
-import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { InputFieldRegister } from "../Input";
 import { SelectFieldRegister } from "../Select";
+import { UserContext } from "../../../context/UserContext";
 
 export const schema = z
   .object({
@@ -40,7 +39,7 @@ export const schema = z
   });
 
 export function RegisterForm() {
-  const navigateTo = useNavigate();
+  const {registerContext} = useContext(UserContext)
 
   const {
     register,
@@ -51,20 +50,7 @@ export function RegisterForm() {
   });
 
   const onSubmit = async (formData) => {
-    try {
-      const { data } = await api.post("/users", {
-        email: formData.email,
-        password: formData.password,
-        name: formData.name,
-        bio: formData.bio,
-        contact: formData.contact,
-        course_module: formData.module,
-      });
-      toast.success("Registrado com sucesso");
-      navigateTo('/')
-    } catch (error) {
-      toast.error("Ops! algo deu errado");
-    }
+    registerContext(formData)
   };
 
   return (

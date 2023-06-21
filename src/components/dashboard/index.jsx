@@ -1,24 +1,11 @@
 import { toast } from "react-toastify";
 import { DashboardPage } from "./style";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 export function Dashboard() {
-  const storedData = localStorage.getItem("apiResponse");
-  const navigateTo = useNavigate();
-  const [info, setInfo] = useState([]);
-  console.log(info)
-
-  useEffect(() => {
-    const user = JSON.parse(storedData);
-    setInfo(user.user);
-  }, []);
-
-  function clearStored() {
-    localStorage.clear();
-    toast.success("Deslogado com sucesso!");
-    navigateTo("/");
-  }
+  const { user, clearStored } = useContext(UserContext);
 
   return (
     <DashboardPage>
@@ -31,15 +18,17 @@ export function Dashboard() {
 
       <header>
         <div className="container__header">
-          <h2>{info.name}</h2>
-          <span>{info.course_module}</span>
+          <h2>{user.name}</h2>
+          <span>{user.course_module}</span>
         </div>
       </header>
 
       <main>
         <div className="container__main">
           <p>Que pena! Estamos em desenvolvimento :(</p>
-          <span>Nossa aplicação está em desenvolvimento, em breve teremos novidades</span>
+          <span>
+            Nossa aplicação está em desenvolvimento, em breve teremos novidades
+          </span>
         </div>
       </main>
     </DashboardPage>

@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { InputFieldLogin } from "./input";
-import { api } from "../../api";
-import { toast } from "react-toastify";
 import { LoginCss } from "./loginPage.js";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const schema = z.object({
   email: z.string().email('email invalido').nonempty(),
@@ -19,7 +18,7 @@ const schema = z.object({
 
 export function Login() {
 
-  const navigateTo = useNavigate();
+  const {login} = useContext(UserContext)
 
   const {
     register,
@@ -29,21 +28,10 @@ export function Login() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = async (formData) => {
-    try {
-      const { data } = await api.post("/sessions", {
-        email: formData.email,
-        password: formData.password,
-      });
-     localStorage.setItem("apiResponse", JSON.stringify(data));
-     localStorage.setItem("token", data.token);
-      toast.success("Logado com sucesso");
-      navigateTo('/dashboard')
-      
-    } catch (error) {
-        toast.error("Ops! algo deu errado");
-    }
+  const onSubmit = (formData) => {
+   login(formData)
   };
+
   return (
     <LoginCss>
       <img className="logo" src="/Logo.svg" alt="" />
