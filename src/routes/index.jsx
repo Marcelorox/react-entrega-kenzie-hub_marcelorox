@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router"
 import { Login } from "../components/Login"
 import { Dashboard } from "../components/dashboard"
 import { RegisterForm } from "../components/register/Form"
-import { ProtectedRoutes } from "./protectedRoute"
+import { ProtectedRoutes } from "./ProtectedRoute"
 import { PublicRoutes } from "./PublicRoute"
 import { TechProvider } from "../context/TechContext"
 
