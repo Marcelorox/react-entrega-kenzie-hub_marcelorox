@@ -38,7 +38,7 @@ export const TechProvider = ({ children }) => {
           }
           return tech
         }))
-
+        toast.success("Tecnologia atualizada com sucesso!");
       } catch (error) {
         console.log(error)
         toast.error("Erro ao atualizar a tecnologia.");
@@ -53,9 +53,9 @@ export const TechProvider = ({ children }) => {
           }
         })  
         setTechs(techs.filter((tech) => tech.id != selelectedtech.id))
-        
+        toast.success("Tecnologia removida com sucesso!");
       } catch (error) {
-        toast.error("Erro ao deletar a tecnologia.");
+        toast.error("Erro ao remover a tecnologia.");
       }
     }
 
