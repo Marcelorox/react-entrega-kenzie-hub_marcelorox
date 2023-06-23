@@ -28,10 +28,6 @@ export function Login() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (formData) => {
-   login(formData)
-  };
-
   return (
     <LoginCss>
       <img className="logo" src="/Logo.svg" alt="" />
@@ -39,7 +35,7 @@ export function Login() {
         <div className="header__form">Login</div>
 
         <div className="form__container">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(login)}>
             <InputFieldLogin
               label="Email"
               type="email"

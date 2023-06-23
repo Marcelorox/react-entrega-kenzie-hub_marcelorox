@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
     const loadUser = async () => {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("apiResponse");
-
+  
       if (token && userId) {
         try {
           const { data } = await api.get(`/profile`, {
@@ -29,10 +29,10 @@ export const UserProvider = ({ children }) => {
         }
       }
     };
-
+  
     loadUser();
   }, []);
-
+  
   const login = async (formData) => {
     try {
       const { data } = await api.post("/sessions", formData);
@@ -45,7 +45,7 @@ export const UserProvider = ({ children }) => {
       toast.error("Ops! algo deu errado");
     }
   };
-
+  
   const registerContext = async (formData) => {
     try {
       const { data } = await api.post("/users", formData);
@@ -55,14 +55,14 @@ export const UserProvider = ({ children }) => {
       toast.error("Ops! algo deu errado");
     }
   };
-
+  
   function clearStored() {
     localStorage.clear();
     toast.success("Deslogado com sucesso!");
     setUser(null);
     navigateTo("/");
   }
-
+  
   return (
     <UserContext.Provider value={{ login, registerContext, user, clearStored }}>
       {children}

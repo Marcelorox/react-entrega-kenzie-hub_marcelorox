@@ -27,11 +27,11 @@ export const schema = z
       .regex(/(?=.*?[A-Z])/, "É necessário ao menos uma letra maiúscula")
       .regex(/(?=.*?[a-z])/, "É necessário ao menos uma letra minúscula")
       .regex(/(?=.*?[0-9])/, "É necessário pelo menos um número")
-      .regex(/(?=.*[)!}{,.^?~=+\-_\/*\-+.\|])/,"É necessário pelo menos um caracter especial"),
+      .regex(/(?=.*[)!}{,.^?~=@+\-_\/*\-+.\|])/,"É necessário pelo menos um caracter especial"),
     confirmPassword: z.string().min(1, "A confirmação de senha é obrigatória"),
     bio: z.string().nonempty("a bio tem que estar preenchida"),
     contact: z.string().nonempty("precisamos de informacao de contato"),
-    module: z.string().nonempty("selecione um modulo"),
+    course_module: z.string().nonempty("selecione um modulo"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "As senhas precisam corresponder",
@@ -127,7 +127,7 @@ export function RegisterForm() {
 
               <SelectFieldRegister
                 id="module"
-                name="module"
+                name="course_module"
                 register={register}
                 errors={errors}
               />
