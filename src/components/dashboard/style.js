@@ -122,12 +122,16 @@ export const DashboardPage = styled.div`
     background: var(--grey-2);
     border-radius: 4px;
     flex-direction: column;
+    
+    overflow-y: auto;
+    max-height: 50vh;
   }
   .main__cards {
     display: flex;
     padding-left: 10px;
     padding-right: 10px;
     height: 49px;
+    min-height: 49px;
     width: 90%;
     background-color: var(--grey-4);
     margin-top: 1rem;
@@ -303,6 +307,10 @@ export const DashboardPage = styled.div`
   .button__register{
     background: var(--color-primary-focus);
   }
+  .message{
+    color:red;
+    margin-top: 1rem;
+  }
 
   @media (max-width: 730px) {
     .container__main {
@@ -319,5 +327,6 @@ export const DashboardPage = styled.div`
     .modal__content{
         width: 80%;
     }
+
   }
 `;

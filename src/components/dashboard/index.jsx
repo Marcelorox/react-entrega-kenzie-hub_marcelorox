@@ -3,6 +3,8 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { TechContext } from "../../context/TechContext";
 import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function Dashboard() {
   const { user, clearStored } = useContext(UserContext);
@@ -25,11 +27,12 @@ export function Dashboard() {
 
   const handleAddTech = (data) => {
     addTech(data);
+    reset()
     closeModal();
   };
   const handleEditTech = (data) => {
-    console.log(data)
     patchTech(selectedTech, data);
+    reset()
     closeModal();
   };
 
@@ -56,6 +59,7 @@ export function Dashboard() {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm({
   });
 
@@ -64,7 +68,6 @@ export function Dashboard() {
     setSelectedTech(technology)
     setIsOpenEdit(true);
   };
-  
 
   return (
     <DashboardPage>
@@ -165,9 +168,11 @@ export function Dashboard() {
               <input
                 type="text"
                 placeholder="Material UI"
+                name="title"
                 {...register("title")}
                 className="input__register"
               />
+              {errors.title && <span className="message">{errors.title.message}</span>}
               <label className="label__register style__label">Selecionar status:</label>
               <select
                 name="status"
